@@ -23,7 +23,10 @@
   		</div>
   		<div class="list-group">
   			<ul>
-  				<li><a href="#" class="list-group-item">Cras justo odio</a></li>
+  				<li><a href="#" class="list-group-item">Cras justo odio</a>
+  					<span class="glyphicon glyphicon-remove-circle float-right deleteitem">
+  					</span>
+  				</li>
   				<li><a href="#" class="list-group-item">Dapibus ac facilisis in</a></li>
   				<li><a href="#" class="list-group-item">Morbi leo risus</a></li>
   				<li><a href="#" class="list-group-item">Porta ac consectetur ac</a></li>
@@ -37,7 +40,7 @@
   	<script src="scripts/bootstrap.js"></script>
   	<script>
   		$(function () {
-  			$('form').submit(function (event) {
+  			$( 'form' ).submit(function (event) {
   				$('ul').append($('<li/>', {}).
   					append($('<a/>', {
   						'href': '#',
@@ -45,6 +48,11 @@
   						'class': 'list-group-item'
   					})));
   				event.preventDefault();
+  				$("input").val("");
+  			});
+
+  			$( '.deleteitem' ).click(function() {
+  				$( this ).parent().remove();
   			});
   		});
   	</script>
