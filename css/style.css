@@ -19,3 +19,7 @@ ul
 .fa-eraser {
 	float: right;
 }
+
+.input-group {
+	margin:0px auto;
+}
