@@ -11,6 +11,7 @@ ul
     list-style-type: none;
 }
 
-span .glyphicon {
+.deleteitem {
 	float: right;
+	display: none;
 }

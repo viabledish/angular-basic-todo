@@ -6,6 +6,7 @@
 	<!-- Bootstrap -->
 	<link href="css/bootstrap.css" rel="stylesheet" media="screen">
 	<link href="css/style.css" rel="stylesheet" media="screen">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -15,6 +16,7 @@
       <![endif]-->
   </head>
   <body>
+
   	<div class="container">
   		<div class="starter-template">
   			<h1>Jquery Simple To-do List</h1>
@@ -22,39 +24,74 @@
   			<form><input type="text" id="textbox"></form>
   		</div>
   		<div class="list-group">
-  			<ul>
-  				<li><a href="#" class="list-group-item">Cras justo odio</a>
-  					<span class="glyphicon glyphicon-remove-circle float-right deleteitem">
-  					</span>
+  			<ul class="list-group" id="todolist">
+  				<li class="listitem"><a href="#" class="list-group-item">Cras justo odio
+  				<span class="glyphicon glyphicon-remove-circle deleteitem"></span></a>
+  				</li><i class="fa fa-camera-retro"></i>
+  				<li class="listitem"><a href="#" class="list-group-item">Dapibus ac facilisis in<span class="glyphicon glyphicon-remove-circle deleteitem">
+  					</span></a>
   				</li>
-  				<li><a href="#" class="list-group-item">Dapibus ac facilisis in</a></li>
-  				<li><a href="#" class="list-group-item">Morbi leo risus</a></li>
-  				<li><a href="#" class="list-group-item">Porta ac consectetur ac</a></li>
-  				<li><a href="#" class="list-group-item">Vestibulum at eros</a></li>
-  			</ul>
-  		</div>
-  	</div>
-  	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  	<script src="scripts/jquery-1.10.2.js"></script>
-  	<!-- Include all compiled plugins (below), or include individual files as needed -->
-  	<script src="scripts/bootstrap.js"></script>
-  	<script>
-  		$(function () {
-  			$( 'form' ).submit(function (event) {
-  				$('ul').append($('<li/>', {}).
-  					append($('<a/>', {
-  						'href': '#',
-  						'text': $("input#textbox").val(),
-  						'class': 'list-group-item'
-  					})));
-  				event.preventDefault();
-  				$("input").val("");
-  			});
+  				<li class="listitem"><a href="#" class="list-group-item">Morbi leo risus<span class="glyphicon glyphicon-remove-circle deleteitem">
+  					</span></a>
+  				</li>
+  				<li class="listitem"><a href="#" class="list-group-item">Porta ac consectetur ac<span class="glyphicon glyphicon-remove-circle deleteitem">
+  				</span></a>
+  			</li>
+  			<li class="listitem">
+	  			<a href="#" class="list-group-item">Vestibulum at eros<span class="glyphicon glyphicon-remove-circle deleteitem">
+	  			</span></a>
+  			</li>
+  	</ul>
+  </div>
+</div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="scripts/jquery-1.10.2.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="scripts/bootstrap.js"></script>
+<script>
+	var liVar = '<li class="listitem"><a href="#" class="list-group-item">';
+	var liVarEnd = '</a><span class="glyphicon glyphicon-remove-circle deleteitem"></span>';
 
-  			$( '.deleteitem' ).click(function() {
-  				$( this ).parent().remove();
-  			});
-  		});
-  	</script>
-  </body>
-  </html>
+	$(function () {
+		$( 'form' ).submit(function (event) {
+			$('ul')
+				.append($('<li/>', { 'class': 'listitem' })
+					.append($('<a/>', {
+						'href': '#',
+						'text': $("input#textbox").val(),
+						'class': 'list-group-item'})
+					.append($('<span/>', {'class': 'glyphicon glyphicon-remove-circle float-right deleteitem' }))
+					)
+					
+				);
+				
+			event.preventDefault();
+			$("input").val("");
+		});
+
+		$('#submitbtn').click(function () {
+			$('ul').append($('<li/>', {}).
+				append($('<a/>', {
+					'href': '#',
+					'text': $("input#textbox").val(),
+					'class': 'list-group-item'
+				})));
+		});
+
+		$( '#todolist' ).on('click', '.deleteitem', function() {
+			$( this ).parent().slideUp();
+		});
+
+		$( '#todolist' ).on('mouseenter', '.listitem', function() { 
+			$( this ).find('span').fadeIn( 600 ); 
+        });
+
+        $( '#todolist' ).on('mouseleave', '.listitem', function() { 
+			$( this ).find('span').fadeOut( 600 ); 
+        });
+        		
+		
+	});
+</script>
+</body>
+</html>
