@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="todoApp">
 <head>
-	<title>Jquery to-do list</title>
+	<title>Angular to-do list</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Bootstrap -->
 	<link href="css/bootstrap.css" rel="stylesheet" media="screen">
 	<link href="css/style.css" rel="stylesheet" media="screen">
-	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -15,42 +14,46 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
       <![endif]-->
   </head>
-  <body>
-
+  <body ng-controller="ItemCtrl">
   	<div class="container">
-  		<div class="starter-template">
-  			<h1>Jquery Simple To-do List</h1>
+  		<div class="starter-template col-lg-12">
+  			<h1>Angular Simple To-do List</h1>
   			<p class="lead">type in an item and hit <strong>enter</strong> to add it to the list.</p>
-  			<form><input type="text" id="textbox"></form>
+  				<form ng-submit="addItem()">
+  					<div class="input-group">
+  						<input class="form-control" type="text" id="textbox" ng-model="newItem">
+  						<!-- <span class="input-group-button">
+  							<button class="btn btn-default" ng-click="addData()">Submit</button>
+  						</span> -->
+					</div>
+				</form>
   		</div>
   		<div class="list-group">
-  			<ul class="list-group" id="todolist">
-  				<li class="listitem"><a href="#" class="list-group-item">Cras justo odio
-  				<span class="glyphicon glyphicon-remove-circle deleteitem"></span></a>
-  				</li><i class="fa fa-camera-retro"></i>
-  				<li class="listitem"><a href="#" class="list-group-item">Dapibus ac facilisis in<span class="glyphicon glyphicon-remove-circle deleteitem">
-  					</span></a>
+  			<ul class="list-group">
+  				<li class="listitem" ng-show="newItem">
+  					<div class="list-group-item">
+  						{{newItem}}
+  					</div>
   				</li>
-  				<li class="listitem"><a href="#" class="list-group-item">Morbi leo risus<span class="glyphicon glyphicon-remove-circle deleteitem">
-  					</span></a>
+  				<li class="listitem" ng-repeat="item in items">
+  					<div class="list-group-item">
+  						{{item.item}}
+	  					<a>
+	  						<i ng-click="removeItem($index)" class="fa fa-eraser"></i>
+	  					</a>
+  					</div>
   				</li>
-  				<li class="listitem"><a href="#" class="list-group-item">Porta ac consectetur ac<span class="glyphicon glyphicon-remove-circle deleteitem">
-  				</span></a>
-  			</li>
-  			<li class="listitem">
-	  			<a href="#" class="list-group-item">Vestibulum at eros<span class="glyphicon glyphicon-remove-circle deleteitem">
-	  			</span></a>
-  			</li>
-  	</ul>
-  </div>
-</div>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="scripts/jquery-1.10.2.js"></script>
+  			</ul>
+  		</div>
+	</div>
+
+<script src="scripts/angular.js"></script>
+<script src="scripts/controllers.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="scripts/jquery-1.10.2.js"></script>
 <script src="scripts/bootstrap.js"></script>
-<script>
-	var liVar = '<li class="listitem"><a href="#" class="list-group-item">';
-	var liVarEnd = '</a><span class="glyphicon glyphicon-remove-circle deleteitem"></span>';
+
+<!-- <script>
 
 	$(function () {
 		$( 'form' ).submit(function (event) {
@@ -92,6 +95,6 @@
         		
 		
 	});
-</script>
+</script> -- >
 </body>
 </html>
