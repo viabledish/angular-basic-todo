@@ -16,10 +16,16 @@ ul
 	display: none;
 }
 
-.fa-eraser {
+.fa-eraser, .fa-pencil-square-o, .fa-check, .fa-check-circle-o {
 	float: right;
+	padding: 10px
 }
+
 
 .input-group {
 	margin:0px auto;
+}
+
+.strike {
+	text-decoration: line-through;
 }

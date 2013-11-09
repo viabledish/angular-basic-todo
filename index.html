@@ -7,6 +7,7 @@
 	<link href="css/bootstrap.css" rel="stylesheet" media="screen">
 	<link href="css/style.css" rel="stylesheet" media="screen">
 	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+	<link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -28,31 +29,52 @@
 					</div>
 				</form>
   		</div>
-  		<div class="list-group">
-  			<ul class="list-group">
-  				<li class="listitem" ng-show="newItem">
-  					<div class="list-group-item">
+  		<div>
+  			<ul class="list-group" ui-sortable="{items: '.sortable'}" ng-model="items">
+  				<li class="listitem" ng-if="newItem">
+  					<a href="#" class="list-group-item">
   						{{newItem}}
-  					</div>
+  					</a>
   				</li>
-  				<li class="listitem" ng-repeat="item in items">
-  					<div class="list-group-item">
-  						{{item.item}}
-	  					<a>
+  				<li class="listitem sortable" ng-repeat="item in items">
+  					<a href ="#" class="list-group-item">
+  						<span ng-class="{strike:item.complete}" ng-hide="item.editorEnabled">{{item.item}}
+  						</span>
+
+  						<input ng-model="item.item" ng-show="item.editorEnabled" value="{{item.item}}">
+  						
+	  						<i ng-click="toggleCompleteItem(item)" class="fa fa-check" ng-hide="item.complete"></i>
+	  						  					
+	  					
+	  						<i ng-click="toggleCompleteItem(item)" class="fa fa-check-square" ng-show="item.complete"></i>
+	  					
+	  					
+	  						<i ng-click="disableEditor(item)" class="fa fa-check-circle-o" ng-show="item.editorEnabled"></i>
+	  					
+	  					
+	  						<i ng-click="enableEditor(item)" class="fa fa-pencil-square-o" ng-hide="item.editorEnabled"></i>
+	  					
+	  					
 	  						<i ng-click="removeItem($index)" class="fa fa-eraser"></i>
-	  					</a>
-  					</div>
+	  					
+  					</a>
   				</li>
   			</ul>
   		</div>
 	</div>
 
-<script src="scripts/angular.js"></script>
-<script src="scripts/controllers.js"></script>
+<!-- <script src="scripts/angular.js"></script> -->
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="scripts/jquery-1.10.2.js"></script>
-<script src="scripts/bootstrap.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script> -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
 
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.min.js"></script>
+
+<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js"></script>
+<script src="scripts/sortable.js"></script> 
+<script src="scripts/controllers.js"></script>
 <!-- <script>
 
 	$(function () {
